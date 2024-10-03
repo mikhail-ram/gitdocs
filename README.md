@@ -36,7 +36,7 @@ conda env create -f environment.yml
 conda activate gitdocs
 ```
 
-3. Create a `.env` file in the root directory and set the `GEMINI_API_KEY` environment variable. You can obtain a Google Generative AI API key from [https://developers.google.com/generativeai](https://developers.google.com/generativeai).
+3. Create a `.env` file in the root directory and set the `GEMINI_API_KEY` environment variable. You can obtain a Google Generative AI API key from [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey).
 
 ### Usage
 
