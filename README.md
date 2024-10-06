@@ -75,4 +75,4 @@ This project is licensed under the Apache 2.0 License. See the LICENSE file for 
 
 
 ---
-Generated with ❤️ using GitDocs.
+Generated with ❤️ using [GitDocs](https://github.com/mikhail-ram/gitdocs).

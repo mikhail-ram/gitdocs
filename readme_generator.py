@@ -22,7 +22,7 @@ def generate_readme(analysis, repo_root_dir):
     # Overwrite the README.md file
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(response.text)
-        f.write("\n\n---\nGenerated with ❤️ using GitDocs.")
+        f.write("\n\n---\nGenerated with ❤️ using [GitDocs](https://github.com/mikhail-ram/gitdocs).")
     print(f"[bold green]README.md generated successfully at {readme_path}![/bold green]")
 
 def send_gemini_request(prompt):
