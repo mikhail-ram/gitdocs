@@ -2,6 +2,11 @@ import os
 import google.generativeai as genai
 from dotenv import load_dotenv
 from rich import print
+from tqdm.rich import tqdm
+from tqdm import TqdmExperimentalWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
 
 load_dotenv()
 
@@ -26,7 +31,7 @@ def analyze_codebase(repo_data, analysis_file='code_analysis.txt'):
     analysis = {}
     analysis_text = ""
 
-    for file_path, file_info in repo_data.items():
+    for file_path, file_info in tqdm(repo_data.items(), desc="Analyzing files", unit="file"):
         code = file_info['contents']
         prompt = f"""
         You are given a {file_info['file_type']} file as part of a larger project. 
