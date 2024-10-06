@@ -10,18 +10,29 @@ def load_code_extensions(file_path="code_extensions.txt"):
 
 CODE_FILE_EXTENSIONS = load_code_extensions()
 
-def clone_and_scrape_repo(repo_source):
+def scrape_repo(repo_source, branch=None):
     # Check if the source is a GitHub URL or a local folder
     if repo_source.endswith('.git'):
         # If it's a GitHub URL, clone the repository
         repo_name = repo_source.split('/')[-1].replace('.git', '')
-        
+
         # Check if the repo directory already exists
         if not os.path.exists(repo_name):
             print(f"[bold green]Cloning repository {repo_name}...[/bold green]")
-            git.Repo.clone_from(repo_source, repo_name)
+            repo = git.Repo.clone_from(repo_source, repo_name, branch=branch)
         else:
             print(f"[bold yellow]Using existing repository {repo_name}...[/bold yellow]")
+            repo = git.Repo(repo_name)
+
+        # If a branch is specified, check it out
+        if branch:
+            print(f"[bold green]Checking out branch: {branch}...[/bold green]")
+            repo.git.checkout(branch)
+        else:
+            # If no branch is specified, ensure the default branch is checked out
+            branch = repo.git.rev_parse('--abbrev-ref', 'HEAD')
+            print(f"[bold green]Using default branch: {branch}[/bold green]")
+
     elif os.path.isdir(repo_source):
         # If it's a local folder, use it directly
         print(f"[bold yellow]Using local directory {repo_source}...[/bold yellow]")
