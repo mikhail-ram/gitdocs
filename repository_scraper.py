@@ -10,16 +10,25 @@ def load_code_extensions(file_path="code_extensions.txt"):
 
 CODE_FILE_EXTENSIONS = load_code_extensions()
 
-def clone_and_scrape_repo(repo_url):
-    # Extract repo name from the URL
-    repo_name = repo_url.split('/')[-1].replace('.git', '')
-    
-    # Check if the repo directory already exists
-    if not os.path.exists(repo_name):
-        print(f"[bold green]Cloning repository {repo_name}...[/bold green]")
-        git.Repo.clone_from(repo_url, repo_name)
+def clone_and_scrape_repo(repo_source):
+    # Check if the source is a GitHub URL or a local folder
+    if repo_source.endswith('.git'):
+        # If it's a GitHub URL, clone the repository
+        repo_name = repo_source.split('/')[-1].replace('.git', '')
+        
+        # Check if the repo directory already exists
+        if not os.path.exists(repo_name):
+            print(f"[bold green]Cloning repository {repo_name}...[/bold green]")
+            git.Repo.clone_from(repo_source, repo_name)
+        else:
+            print(f"[bold yellow]Using existing repository {repo_name}...[/bold yellow]")
+    elif os.path.isdir(repo_source):
+        # If it's a local folder, use it directly
+        print(f"[bold yellow]Using local directory {repo_source}...[/bold yellow]")
+        repo_name = repo_source
     else:
-        print(f"[bold yellow]Using existing repository {repo_name}...[/bold yellow]")
+        print(f"[bold red]Error: Invalid repository source. Please provide a valid GitHub URL or local folder path.[/bold red]")
+        return None, {}
 
     # Dictionary to hold the repository's data
     repo_data = {}
@@ -41,4 +50,4 @@ def clone_and_scrape_repo(repo_url):
                     'contents': contents
                 }
 
-    return repo_data
+    return repo_name, repo_data
