@@ -57,6 +57,7 @@ python gitdocs/main.py https://github.com/google/python-fire --generate-readme -
 - `--generate-readme`: Generates a README.md file for the repository.
 - `--generate-docstrings`: Adds docstrings to the code files.
 - `--chat`: Starts an interactive chat session where you can ask questions about the codebase.
+- `--branch <branch_name>`: Specifies the branch of the repository to be used (default branch is used if unspecified).
 
 ### Features
 
