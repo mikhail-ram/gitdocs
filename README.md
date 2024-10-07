@@ -43,13 +43,13 @@ conda activate gitdocs
 To generate documentation for a GitHub repository, run the following command:
 
 ```bash
-python gitdocs/main.py <repository_url> [--generate-readme] [--generate-docstrings] [--chat]
+python gitdocs/main.py <repository_url> [--generate-readme] [--generate-docstrings] [--chat] [--branch <branch_name>]
 ```
 
 **Example:**
 
 ```bash
-python gitdocs/main.py https://github.com/google/python-fire --generate-readme --generate-docstrings --chat
+python gitdocs/main.py https://github.com/google/python-fire --generate-readme --generate-docstrings --chat --branch master
 ```
 
 **Flags:**
