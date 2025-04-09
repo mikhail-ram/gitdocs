@@ -93,3 +93,4 @@
 .qml
 .tcl
 .expect
+.ipynb

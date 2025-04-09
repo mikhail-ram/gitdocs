@@ -11,7 +11,7 @@ genai.configure(api_key=API_KEY)
 def generate_readme(analysis, repo_root_dir):
     project_overview = ""
     for file_path, file_info in analysis.items():
-        project_overview += file_info['file_analysis'] + "\n"
+        project_overview += f"{file_info}\n"
 
     prompt = f"Generate a comprehensive README for the following project:\n{project_overview}"
     response = send_gemini_request(prompt)

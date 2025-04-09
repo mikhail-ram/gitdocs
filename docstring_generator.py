@@ -10,7 +10,7 @@ genai.configure(api_key=API_KEY)
 
 def generate_docstrings(analysis):
     for file_path, file_info in analysis.items():
-        code_analysis = file_info['file_analysis']
+        code_analysis = file_info
         file_extension = os.path.splitext(file_path)[1]  # Get the file extension (e.g., .py, .js, .hs)
 
         prompt = f"""
